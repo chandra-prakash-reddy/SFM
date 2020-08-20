@@ -1,0 +1,10 @@
+#inputpath {
+    margin-left: -250px;
+    height: 40px;
+}
+
+.cm-s-monokai.CodeMirror {
+    background: #272822;
+    color: #f8f8f2;
+    height: 450px;
+}
