@@ -54,14 +54,3 @@ function saveFile() {
 		alert("error in saving file!");
 	});
 };
-
-function downloadFile() {
-	document.getElementById("currentPath").innerHTML = urlParams.get('path');
-	var path = urlParams.get('path');
-	axios.get("http://localhost:9999/download?path=" + encodeURIComponent(path)).then((response) => {
-		return response
-	}, (error) => {
-		alert("unable download file");
-		console.log(error)
-	});
-}
