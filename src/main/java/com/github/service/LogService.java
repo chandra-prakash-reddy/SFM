@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 @Component
 public class LogService {
@@ -18,12 +21,16 @@ public class LogService {
      */
     public String getLastNLines(String filePath,int noOfLines) throws IOException {
         ReversedLinesFileReader fileObject = new ReversedLinesFileReader(new File(filePath), Charset.defaultCharset());
+        Stack<String> lineStack=new Stack<>();
         StringBuilder result=new StringBuilder("");
         for(int i=0;i<noOfLines;i++){
             String line=fileObject.readLine();
             if(line==null)
                 break;
-            result.append(line+"\n");
+            lineStack.push(line);
+        }
+        while (!lineStack.isEmpty()){
+            result.append(lineStack.pop()+"\n");
         }
         return result.toString();
     }
